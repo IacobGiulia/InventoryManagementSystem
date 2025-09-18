@@ -9,6 +9,7 @@ import com.example.inventorymanagementsystem.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class OrderService {
@@ -60,5 +61,9 @@ public class OrderService {
             throw new RuntimeException("Order not found");
         }
         orderRepo.deleteById(orderId);
+    }
+
+    public List<Order> getAllOrders() {
+        return orderRepo.findAll();
     }
 }
