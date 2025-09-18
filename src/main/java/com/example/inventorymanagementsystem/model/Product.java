@@ -24,4 +24,14 @@ public class Product{
 
     public int getProductQuantityInStock() { return productQuantityInStock; }
     public void setProductQuantityInStock(int productQuantityInStock) { this.productQuantityInStock = productQuantityInStock; }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + productId +
+                ", name='" + productName + '\'' +
+                ", price=" + productPrice +
+                ", quantity=" + productQuantityInStock +
+                '}';
+    }
 }
