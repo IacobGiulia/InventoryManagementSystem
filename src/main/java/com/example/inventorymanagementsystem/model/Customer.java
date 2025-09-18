@@ -6,14 +6,14 @@ import jakarta.persistence.*;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int custId;
+    private Long custId;
 
     private String custName;
     private String custContact;
     private String custAddress;
 
-    public int getCustId() { return custId; }
-    public void setCustId(int custId) { this.custId = custId; }
+    public Long getCustId() { return custId; }
+    public void setCustId(Long custId) { this.custId = custId; }
 
     public String getCustName() { return custName; }
     public void setCustName(String custName) { this.custName = custName; }

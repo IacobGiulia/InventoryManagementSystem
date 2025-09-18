@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int orderId;
+    private Long orderId;
 
     private double orderTotalAmount;
     private LocalDate orderDate;
@@ -23,8 +23,8 @@ public class Order {
     @JoinColumn(name = "cust_id")
     private Customer customer;
 
-    public int getOrderId() { return orderId; }
-    public void setOrderId(int orderId) { this.orderId = orderId; }
+    public Long getOrderId() { return orderId; }
+    public void setOrderId(Long orderId) { this.orderId = orderId; }
 
     public double getOrderTotalAmount() { return orderTotalAmount; }
     public void setOrderTotalAmount(double orderTotalAmount) { this.orderTotalAmount = orderTotalAmount; }

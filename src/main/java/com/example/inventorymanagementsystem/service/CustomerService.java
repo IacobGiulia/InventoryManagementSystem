@@ -74,7 +74,7 @@ public class CustomerService {
 
     public List<Order> viewAllOrders(Long customerId) {
         return orderRepo.findAll().stream()
-                .filter(o -> o.getCustomer().getCustId().equals(customerId))
+                .filter(o -> o.getCustomer().getCustId() == customerId)
                 .toList();
     }
 }
