@@ -7,6 +7,8 @@ import com.example.inventorymanagementsystem.service.ProductService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
 
@@ -25,6 +27,7 @@ public class InventoryManagementSystemApplication implements CommandLineRunner{
 
     public static void main(String[] args) {
         SpringApplication.run(InventoryManagementSystemApplication.class, args);
+        final Logger logger = LogManager.getLogger(InventoryManagementSystemApplication.class);
     }
 
     @Override

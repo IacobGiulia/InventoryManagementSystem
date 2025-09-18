@@ -6,6 +6,8 @@ import com.example.inventorymanagementsystem.model.Product;
 import com.example.inventorymanagementsystem.repository.CustomerRepository;
 import com.example.inventorymanagementsystem.repository.ProductRepository;
 import com.example.inventorymanagementsystem.repository.OrderRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -13,6 +15,8 @@ import java.util.List;
 
 @Service
 public class CustomerService {
+
+    private static final Logger logger = LogManager.getLogger(CustomerService.class);
     private final CustomerRepository customerRepo;
     private final ProductRepository productRepo;
     private final OrderRepository orderRepo;
@@ -51,7 +55,9 @@ public class CustomerService {
     }
 
     public Customer addCustomer(Customer customer) {
-        return customerRepo.save(customer);
+        Customer saved = customerRepo.save(customer);
+        logger.info("Customer added: {}", saved.getCustName());
+        return saved;
     }
 
     public Customer updateCustomer(Long id, Customer updatedCustomer) {
@@ -73,8 +79,10 @@ public class CustomerService {
     }
 
     public List<Order> viewAllOrders(Long customerId) {
-        return orderRepo.findAll().stream()
-                .filter(o -> o.getCustomer().getCustId() == customerId)
+        List<Order> orders = orderRepo.findAll().stream()
+                .filter(o -> o.getCustomer().getCustId().equals(customerId))
                 .toList();
+        logger.info("Viewed all orders for customerId={}", customerId);
+        return orders;
     }
 }

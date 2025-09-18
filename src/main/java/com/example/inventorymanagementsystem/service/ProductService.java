@@ -2,20 +2,25 @@ package com.example.inventorymanagementsystem.service;
 
 import com.example.inventorymanagementsystem.model.Product;
 import com.example.inventorymanagementsystem.repository.ProductRepository;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.stereotype.Service;
-
+import org.apache.logging.log4j.Logger;
 import java.util.List;
+
 
 @Service
 public class ProductService {
     private final ProductRepository productRepo;
+    private static final Logger logger = LogManager.getLogger(ProductService.class);
 
     public ProductService(ProductRepository productRepo) {
         this.productRepo = productRepo;
     }
 
     public Product addProduct(Product product) {
-        return productRepo.save(product);
+        Product saved = productRepo.save(product);
+        logger.info("Product added: {}", saved.getProductName());
+        return saved;
     }
 
     public Product updateProduct(long id, Product updatedProduct) {
@@ -32,8 +37,9 @@ public class ProductService {
         if (updatedProduct.getProductQuantityInStock() != 0) {
             product.setProductQuantityInStock(updatedProduct.getProductQuantityInStock());
         }
-
-        return productRepo.save(product);
+        Product saved = productRepo.save(product);
+        logger.info("Product updated: id={}, newQuantity={}", id, saved.getProductQuantityInStock());
+        return saved;
     }
 
     public void deleteProduct(Long id) {
@@ -41,6 +47,7 @@ public class ProductService {
             throw new RuntimeException("Product not found with id " + id);
         }
         productRepo.deleteById(id);
+        logger.info("Product deleted: id={}", id);
     }
 
     public List<Product> getAllProducts() {
