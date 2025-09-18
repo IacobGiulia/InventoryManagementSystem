@@ -8,12 +8,12 @@ public class Product{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int productId;
+    private long productId;
     private String productName;
     private double productPrice;
     private int productQuantityInStock;
 
-    public int getProductId() { return productId; }
+    public long getProductId() { return productId; }
     public void setProductId(int productId) { this.productId = productId; }
 
     public String getProductName() { return productName; }

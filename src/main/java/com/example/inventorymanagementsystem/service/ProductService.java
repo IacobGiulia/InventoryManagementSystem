@@ -18,7 +18,7 @@ public class ProductService {
         return productRepo.save(product);
     }
 
-    public Product updateProduct(Long id, Product updatedProduct) {
+    public Product updateProduct(long id, Product updatedProduct) {
         Product product = productRepo.findById(id).orElseThrow(
                 () -> new RuntimeException("Product not found with id " + id)
         );
